@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportPemesanan" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c387672e-95f6-4461-82ca-13716efb55f5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="awal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="akhir" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pemesanan.`id_pemesanan` AS pemesanan_id_pemesanan,
+     pemesanan.`id_guide` AS pemesanan_id_guide,
+     pemesanan.`id_wisatawan` AS pemesanan_id_wisatawan,
+     pemesanan.`pilih_paket` AS pemesanan_pilih_paket,
+     pemesanan.`id_paket_travel` AS pemesanan_id_paket_travel,
+     pemesanan.`id_wisata` AS pemesanan_id_wisata,
+     pemesanan.`id_transportasi` AS pemesanan_id_transportasi,
+     pemesanan.`id_penginapan` AS pemesanan_id_penginapan,
+     pemesanan.`lama_wisata` AS pemesanan_lama_wisata,
+     pemesanan.`jumlah_rombongan` AS pemesanan_jumlah_rombongan,
+     pemesanan.`tanggal_perjalanan` AS pemesanan_tanggal_perjalanan,
+     pemesanan.`total_bayar` AS pemesanan_total_bayar,
+     wisatawan.`id_wisatawan` AS wisatawan_id_wisatawan,
+     wisatawan.`nama_wisatawan` AS wisatawan_nama_wisatawan,
+     wisatawan.`alamat` AS wisatawan_alamat,
+     wisatawan.`telepon` AS wisatawan_telepon,
+     wisata.`id_wisata` AS wisata_id_wisata,
+     wisata.`nama_wisata` AS wisata_nama_wisata,
+     wisata.`id_jenis_wisata` AS wisata_id_jenis_wisata,
+     wisata.`tarif_wisata` AS wisata_tarif_wisata
+FROM
+     `pemesanan` pemesanan INNER JOIN `wisatawan` wisatawan ON pemesanan.`id_wisatawan` = wisatawan.`id_wisatawan`
+     INNER JOIN `wisata` wisata ON pemesanan.`id_wisata` = wisata.`id_wisata`
+where
+tanggal_perjalanan BETWEEN $P{awal} and $P{akhir}]]>
+	</queryString>
+	<field name="pemesanan_id_pemesanan" class="java.lang.String"/>
+	<field name="pemesanan_id_guide" class="java.lang.String"/>
+	<field name="pemesanan_id_wisatawan" class="java.lang.String"/>
+	<field name="pemesanan_pilih_paket" class="java.lang.String"/>
+	<field name="pemesanan_id_paket_travel" class="java.lang.String"/>
+	<field name="pemesanan_id_wisata" class="java.lang.String"/>
+	<field name="pemesanan_id_transportasi" class="java.lang.String"/>
+	<field name="pemesanan_id_penginapan" class="java.lang.String"/>
+	<field name="pemesanan_lama_wisata" class="java.lang.String"/>
+	<field name="pemesanan_jumlah_rombongan" class="java.lang.String"/>
+	<field name="pemesanan_tanggal_perjalanan" class="java.sql.Date"/>
+	<field name="pemesanan_total_bayar" class="java.lang.String"/>
+	<field name="wisatawan_id_wisatawan" class="java.lang.String"/>
+	<field name="wisatawan_nama_wisatawan" class="java.lang.String"/>
+	<field name="wisatawan_alamat" class="java.lang.String"/>
+	<field name="wisatawan_telepon" class="java.lang.String"/>
+	<field name="wisata_id_wisata" class="java.lang.String"/>
+	<field name="wisata_nama_wisata" class="java.lang.String"/>
+	<field name="wisata_id_jenis_wisata" class="java.lang.String"/>
+	<field name="wisata_tarif_wisata" class="java.lang.String"/>
+	<variable name="TotalRevenue" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{pemesanan_total_bayar}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8ad8b595-57ed-4fbd-99df-94cfbbf0bbe8" x="182" y="12" width="387" height="67"/>
+				<textElement>
+					<font size="48"/>
+				</textElement>
+				<text><![CDATA[Pemesanan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="31046bba-4391-4f9f-89f9-c6e1314efd1f" x="-12" y="41" width="159" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Wisatawan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="602b1b20-bf86-4179-b287-f892a1885b92" x="147" y="41" width="304" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tujuan Wisata]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8b0315df-2b8a-4d1c-bea6-19574d28058e" x="451" y="41" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lama Wisata(Hari)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c1fef5ae-9c6b-4c9e-9789-fcf5c18c9603" x="551" y="41" width="127" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah Rombongan(Hari)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="88f45c63-b9cd-4052-b16f-12c46dc54b60" x="678" y="41" width="82" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Harga Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a62e48b8-dc27-41b6-bc11-1028a911838c" x="-12" y="0" width="159" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{wisatawan_nama_wisatawan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="37976653-9776-4bd6-8f01-e711948cf51f" x="147" y="0" width="304" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{wisata_nama_wisata}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a16fc4a4-c402-47b2-80bc-39a3cd29a3a9" x="678" y="0" width="82" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pemesanan_total_bayar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6c941a0f-313c-4c2f-bfa9-e3ac8d24ba20" x="451" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pemesanan_lama_wisata}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2c68d0e8-f520-4ec5-abda-15cc8fd23f34" x="551" y="0" width="127" height="20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<leftPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					<rightPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pemesanan_jumlah_rombongan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

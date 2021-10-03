@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportPembayaran" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e0a395bd-ea50-401a-9921-8626ad0de23c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="80"/>
+	<property name="ireport.y" value="143"/>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pemesanan.`id_pemesanan` AS pemesanan_id_pemesanan,
+     pemesanan.`id_guide` AS pemesanan_id_guide,
+     pemesanan.`id_wisatawan` AS pemesanan_id_wisatawan,
+     pemesanan.`pilih_paket` AS pemesanan_pilih_paket,
+     pemesanan.`id_paket_travel` AS pemesanan_id_paket_travel,
+     pemesanan.`id_wisata` AS pemesanan_id_wisata,
+     pemesanan.`id_transportasi` AS pemesanan_id_transportasi,
+     pemesanan.`id_penginapan` AS pemesanan_id_penginapan,
+     pemesanan.`lama_wisata` AS pemesanan_lama_wisata,
+     pemesanan.`jumlah_rombongan` AS pemesanan_jumlah_rombongan,
+     pemesanan.`tanggal_perjalanan` AS pemesanan_tanggal_perjalanan,
+     pemesanan.`total_bayar` AS pemesanan_total_bayar,
+     pembayaran.`id_pembayaran` AS pembayaran_id_pembayaran,
+     pembayaran.`id_pemesanan` AS pembayaran_id_pemesanan,
+     pembayaran.`total_bayar` AS pembayaran_total_bayar,
+     pembayaran.`tanggal_transaksi` AS pembayaran_tanggal_transaksi,
+     wisatawan.`id_wisatawan` AS wisatawan_id_wisatawan,
+     wisatawan.`nama_wisatawan` AS wisatawan_nama_wisatawan,
+     wisatawan.`alamat` AS wisatawan_alamat,
+     wisatawan.`telepon` AS wisatawan_telepon,
+     wisata.`id_wisata` AS wisata_id_wisata,
+     wisata.`nama_wisata` AS wisata_nama_wisata,
+     wisata.`id_jenis_wisata` AS wisata_id_jenis_wisata,
+     wisata.`tarif_wisata` AS wisata_tarif_wisata,
+     pembayaran.`jumlah_bayar` AS pembayaran_jumlah_bayar,
+     pembayaran.`sisa` AS pembayaran_sisa,
+     user.`username` AS user_username,
+     user.`password` AS user_password,
+     user.`jenis` AS user_jenis
+FROM
+     `pembayaran` pembayaran INNER JOIN `pemesanan` pemesanan ON pembayaran.`id_pemesanan` = pemesanan.`id_pemesanan`
+     INNER JOIN `wisata` wisata ON pemesanan.`id_wisata` = wisata.`id_wisata`
+     INNER JOIN `wisatawan` wisatawan ON pemesanan.`id_wisatawan` = wisatawan.`id_wisatawan`,
+     `user` user
+WHERE
+     `id_pembayaran` = $P{id}]]>
+	</queryString>
+	<field name="pemesanan_id_pemesanan" class="java.lang.String"/>
+	<field name="pemesanan_id_guide" class="java.lang.String"/>
+	<field name="pemesanan_id_wisatawan" class="java.lang.String"/>
+	<field name="pemesanan_pilih_paket" class="java.lang.String"/>
+	<field name="pemesanan_id_paket_travel" class="java.lang.String"/>
+	<field name="pemesanan_id_wisata" class="java.lang.String"/>
+	<field name="pemesanan_id_transportasi" class="java.lang.String"/>
+	<field name="pemesanan_id_penginapan" class="java.lang.String"/>
+	<field name="pemesanan_lama_wisata" class="java.lang.String"/>
+	<field name="pemesanan_jumlah_rombongan" class="java.lang.String"/>
+	<field name="pemesanan_tanggal_perjalanan" class="java.sql.Date"/>
+	<field name="pemesanan_total_bayar" class="java.lang.String"/>
+	<field name="pembayaran_id_pembayaran" class="java.lang.String"/>
+	<field name="pembayaran_id_pemesanan" class="java.lang.String"/>
+	<field name="pembayaran_total_bayar" class="java.lang.String"/>
+	<field name="pembayaran_tanggal_transaksi" class="java.lang.String"/>
+	<field name="wisatawan_id_wisatawan" class="java.lang.String"/>
+	<field name="wisatawan_nama_wisatawan" class="java.lang.String"/>
+	<field name="wisatawan_alamat" class="java.lang.String"/>
+	<field name="wisatawan_telepon" class="java.lang.String"/>
+	<field name="wisata_id_wisata" class="java.lang.String"/>
+	<field name="wisata_nama_wisata" class="java.lang.String"/>
+	<field name="wisata_id_jenis_wisata" class="java.lang.String"/>
+	<field name="wisata_tarif_wisata" class="java.lang.String"/>
+	<field name="pembayaran_jumlah_bayar" class="java.lang.String"/>
+	<field name="pembayaran_sisa" class="java.lang.String"/>
+	<field name="user_username" class="java.lang.String"/>
+	<field name="user_password" class="java.lang.String"/>
+	<field name="user_jenis" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ee0ce18d-a6c9-40ec-bff3-a6667340ec6e" x="171" y="17" width="417" height="62"/>
+				<textElement textAlignment="Center">
+					<font size="48" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tour Travel]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement uuid="a7845101-f372-4e6e-bc19-d31f15232f34" x="0" y="26" width="752" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="86" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fc2a9f40-f8ad-47d1-8435-8d0be275880a" x="37" y="0" width="116" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Pembayaran]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2eaa1685-37f9-4e49-a767-ed3feb835f6d" x="171" y="0" width="137" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pembayaran_id_pembayaran}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c0d7eae6-df74-4817-87a9-a7965f578ae1" x="37" y="22" width="116" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Transaksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="507acc5d-3912-4dbc-b199-a90ec24a1920" x="441" y="2" width="128" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Wisatawan]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9d4051ab-21fb-494c-b90b-e733a83af05e" x="588" y="2" width="154" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pemesanan_id_wisatawan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fdd7b6b2-96fa-4f4e-9729-342bab9a7fe2" x="441" y="42" width="128" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f0c54d95-5822-4c28-94e4-8444d7cb1056" x="588" y="42" width="154" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{wisatawan_alamat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="905a97d9-260c-442f-86da-088137c4b6e7" x="441" y="22" width="128" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Wisatawan]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="512427d6-411f-464c-9941-6df5bf5aee94" x="588" y="22" width="154" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{wisatawan_nama_wisatawan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cf09b0ce-17f9-4e52-bebf-1c508a9a6ade" x="441" y="61" width="128" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telepon]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="84eececf-bfbf-451b-9589-380e2728b294" x="588" y="62" width="154" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{wisatawan_telepon}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="a7845101-f372-4e6e-bc19-d31f15232f34" x="0" y="81" width="752" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="158" y="2" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="158" y="20" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="575" y="2" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="575" y="22" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="575" y="62" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="575" y="42" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f2041cd0-2956-4132-8391-8d32704101e3" x="171" y="20" width="119" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pembayaran_tanggal_transaksi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="225" splitType="Stretch">
+			<textField>
+				<reportElement uuid="13ba86e7-9c61-4254-bbe0-7258b908aa3d" x="78" y="20" width="215" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{wisata_nama_wisata}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0eeba932-b45d-4e22-866c-5bf0a58b29af" x="78" y="0" width="215" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tujuan Wisata]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8679beca-25f5-4e20-936e-74ab39164783" x="418" y="20" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pemesanan_jumlah_rombongan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="770e510d-0b09-4e13-ace1-ec38306a4405" x="363" y="0" width="148" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah Rombongan(Orang)]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a0cdf941-b40f-480e-b921-925e0d3f73a9" x="642" y="20" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pemesanan_lama_wisata}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="341bc407-03e6-44ae-857b-98afd614fc58" x="598" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lama Wisata(Hari)]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="60cf8ea6-5462-4333-8f4e-d02e05c2b222" x="0" y="56" width="752" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="92c97d80-2fb2-414f-aef3-ef918c77f52c" x="639" y="65" width="119" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pembayaran_total_bayar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3be97295-941f-407c-a67d-1693c966c252" x="498" y="65" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Bayar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="610" y="65" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="31a445e4-585d-4dff-9257-03356eadc6e8" x="623" y="85" width="119" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="aa611aa9-4998-4834-9ac6-179b5db0c486" x="639" y="98" width="119" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pembayaran_jumlah_bayar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d9a4985a-e10c-4bc8-9199-341f5343f752" x="498" y="97" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah Bayar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="610" y="97" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f1a92e44-a543-4e6b-bde2-0ae9898ddf50" x="623" y="117" width="119" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="1a216353-390d-46e5-8e9d-427578ffdcb3" x="498" y="128" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sisa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65e6c8b4-4cbb-4aed-beb3-3d32fa5cc59b" x="610" y="128" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="35267c14-4b0e-4828-ba1e-fa305821221e" x="623" y="148" width="119" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="5a33abd5-e321-484d-b142-06c86708fc9d" x="335" y="178" width="125" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{user_username}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="dcd3958d-c252-4afe-851b-31099710917a" x="71" y="178" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{wisatawan_nama_wisatawan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fc15ed01-2dbb-446b-89e4-bee50ab4cf80" x="71" y="198" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Wisatawan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="88461236-5376-4f89-90dd-669ddaa831dd" x="53" y="158" width="168" height="20"/>
+				<textElement/>
+				<text><![CDATA[(                                                   )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="88461236-5376-4f89-90dd-669ddaa831dd" x="273" y="158" width="168" height="20"/>
+				<textElement/>
+				<text><![CDATA[(                                                   )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d58b7184-fc1c-412e-bbf4-e996ca36b010" x="623" y="65" width="16" height="20"/>
+				<textElement/>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d58b7184-fc1c-412e-bbf4-e996ca36b010" x="623" y="128" width="16" height="20"/>
+				<textElement/>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d58b7184-fc1c-412e-bbf4-e996ca36b010" x="623" y="97" width="16" height="20"/>
+				<textElement/>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="63718060-6179-4bdd-a6f7-bdd0be6cb2b2" x="639" y="128" width="119" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pembayaran_sisa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
